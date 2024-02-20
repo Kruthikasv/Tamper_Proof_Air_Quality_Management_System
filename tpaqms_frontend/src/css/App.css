@@ -1,0 +1,9 @@
+.App {
+    text-align: center;
+    background-color: #fff;
+  }
+  
+  .App-header {
+    font-size: calc(10px + 2vmin);
+    color: white;
+  }
