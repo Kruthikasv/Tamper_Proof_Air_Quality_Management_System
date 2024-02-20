@@ -1,0 +1,48 @@
+{
+	"name": "test-network",
+	"version": "1.0.0",
+	"client": {
+		"tlsEnable": true,
+		"adminCredential": {
+			"id": "exploreradmin",
+			"password": "exploreradminpw"
+		},
+		"enableAuthentication": true,
+		"organization": "Orderer",
+		"connection": {
+			"timeout": {
+				"peer": {
+					"endorser": "300"
+				},
+				"orderer": "300"
+			}
+		}
+	},
+	"channels": {
+		"my-channel1": {
+			"peers": {
+				"orderer0.group1.orderer.scm.com": {}
+			}
+		}
+	},
+	"organizations": {
+		"Orderer": {
+			"mspid": "Orderer",
+			"adminPrivateKey": {
+				"path": "/tmp/Fablo/explorer/peerOrganizations/orderer.scm.com/users/Admin@orderer.scm.com/msp/keystore/priv-key.pem"
+			},
+			"peers": ["orderer0.group1.orderer.scm.com"],
+			"signedCert": {
+				"path": "/tmp/Fablo/explorer/peerOrganizations/orderer.scm.com/users/User1@orderer.scm.com/msp/signcerts/User1@orderer.scm.com-cert.pem"
+			}
+		}
+	},
+	"peers": {
+		"orderer0.group1.orderer.scm.com": {
+			"tlsCACerts": {
+				"path": "/home/kruthika/Desktop/Fablo/explorer/peerOrganizations/orderer.scm.com/peers/orderer0.group1.orderer.scm.com/tls/ca.crt"
+			},
+			"url": "grpcs://orderer0.group1.orderer.scm.com:7051"
+		}
+	}
+}

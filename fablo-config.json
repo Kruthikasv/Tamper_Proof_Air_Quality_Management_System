@@ -1,0 +1,77 @@
+{
+  "$schema": "https://github.com/softwaremill/fablo/releases/download/1.0.2/schema.json",
+  "global": {
+    "fabricVersion": "2.4.0",
+    "tls": false,
+    "tools": { "explorer": true }
+  },
+  "orgs": [
+    {
+      "organization": {
+        "name": "Orderer",
+        "domain": "orderer.scm.com"
+      },
+      "orderers": [
+        {
+          "groupName": "group1",
+          "type": "solo",
+          "instances": 1
+        }
+      ],
+      "tools": {}
+    },
+    {
+      "organization": {
+        "name": "spcborg",
+        "domain": "spcborg.scm.com"
+      },
+      "peer": {
+        "instances": 1,
+        "db": "LevelDb"
+      },
+      "tools": {}
+    },
+    {
+      "organization": {
+        "name": "cpcborg",
+        "domain": "cpcborg.scm.com"
+      },
+      "peer": {
+        "instances": 1,
+        "db": "LevelDb"
+      },
+      "tools": {}
+    }
+  ],
+  "channels": [
+    {
+      "name": "my-channel1",
+      "orgs": [
+        {
+          "name": "spcborg",
+          "peers": [
+            "peer0"
+           ]
+        },
+        {
+          "name": "cpcborg",
+          "peers": [
+            "peer0"
+           ]
+        }
+      ]
+    }
+  ],
+  "chaincodes": [
+    {
+      "name": "chaincode1",
+      "version": "0.0.1",
+      "lang": "node",
+      "channel": "my-channel1",
+      "directory": "./chaincodes/chaincode-kv-node",
+      "endorsement": "OR ('spcborg.member', 'cpcborg.member')",
+      "initRequired":false
+
+    }
+  ]
+}
